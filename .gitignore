@@ -1,0 +1,10 @@
+uploads
+llm_models/glm-4-9b-chat.zip
+llm_models/glm-4-9b-chat
+llm_models/bge-m3
+llm_models/bge.zip
+__pycache__
+flask_app/app/__pycache__
+db
+test/rag.py
+rag-main

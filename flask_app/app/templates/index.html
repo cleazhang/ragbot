@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG智能问答系统</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>🤖 RAG Bot</h2>
+                <button class="btn-icon" id="newChatBtn" title="新建对话">+</button>
+            </div>
+            <div class="sidebar-content">
+                <div class="upload-section">
+                    <h3>📁 文档管理</h3>
+                    <input type="file" id="fileInput" multiple accept=".txt,.html,.pdf" style="display: none;">
+                    <button class="btn-secondary" id="uploadBtn">上传文档</button>
+                    <button class="btn-secondary" id="clearFilesBtn">清空文档</button>
+                    <div id="fileList" class="file-list"></div>
+                </div>
+                <div class="user-section">
+                    <div class="user-info">
+                        <span id="username">用户</span>
+                    </div>
+                    <button class="btn-secondary" id="logoutBtn">退出登录</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 聊天区域 -->
+            <div class="chat-container" id="chatContainer">
+                <div class="welcome-message">
+                    <h1>欢迎使用 RAG 智能问答系统</h1>
+                    <p>上传文档后，我可以基于文档内容回答您的问题</p>
+                </div>
+            </div>
+
+            <!-- 输入区域 -->
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <textarea 
+                        id="questionInput" 
+                        placeholder="输入您的问题..." 
+                        rows="1"
+                        maxlength="1000"></textarea>
+                    <button id="sendBtn" class="send-button" disabled>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="input-footer">
+                    <span class="hint">按 Enter 发送，Shift+Enter 换行</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 加载提示 -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p>AI 正在思考中...</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
