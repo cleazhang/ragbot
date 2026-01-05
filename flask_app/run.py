@@ -1,9 +1,11 @@
 from app import create_app
+import os
 
 app = create_app()
 
-if __name__ == '__main__':
-    # 默认端口5050，可以通过环境变量PORT修改
-    import os
-    port = int(os.environ.get('PORT', 5050))
-    app.run(debug=True, port=port, host='0.0.0.0')
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5050))
+
+    # Render/生产环境不要开 debug/reloader
+    debug = os.environ.get("FLASK_DEBUG", "0") == "1"
+    app.run(host="0.0.0.0", port=port, debug=debug, use_reloader=debug)
