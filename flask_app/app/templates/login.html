@@ -1,45 +1,45 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登录 - RAG智能问答系统</title>
+    <title>Login - RAG Intelligent Q&A System</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="auth-page">
     <div class="auth-container">
         <div class="auth-card">
-            <h1>🤖 RAG 智能问答系统</h1>
+            <h1>🤖 RAG Intelligent Q&A System</h1>
             <div class="auth-tabs">
-                <button class="tab-btn active" data-tab="login">登录</button>
-                <button class="tab-btn" data-tab="register">注册</button>
+                <button class="tab-btn active" data-tab="login">Log In</button>
+                <button class="tab-btn" data-tab="register">Register</button>
             </div>
             
-            <!-- 登录表单 -->
+            <!-- Login Form -->
             <form id="loginForm" class="auth-form">
                 <div class="form-group">
-                    <label for="loginUsername">用户名</label>
+                    <label for="loginUsername">Username</label>
                     <input type="text" id="loginUsername" name="username" required>
                 </div>
                 <div class="form-group">
-                    <label for="loginPassword">密码</label>
+                    <label for="loginPassword">Password</label>
                     <input type="password" id="loginPassword" name="password" required>
                 </div>
-                <button type="submit" class="btn-primary">登录</button>
+                <button type="submit" class="btn-primary">Log In</button>
                 <div id="loginError" class="error-message"></div>
             </form>
 
-            <!-- 注册表单 -->
+            <!-- Registration Form -->
             <form id="registerForm" class="auth-form" style="display: none;">
                 <div class="form-group">
-                    <label for="registerUsername">用户名</label>
+                    <label for="registerUsername">Username</label>
                     <input type="text" id="registerUsername" name="username" required>
                 </div>
                 <div class="form-group">
-                    <label for="registerPassword">密码</label>
+                    <label for="registerPassword">Password</label>
                     <input type="password" id="registerPassword" name="password" required>
                 </div>
-                <button type="submit" class="btn-primary">注册</button>
+                <button type="submit" class="btn-primary">Register</button>
                 <div id="registerError" class="error-message"></div>
             </form>
         </div>
