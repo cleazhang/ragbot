@@ -56,11 +56,11 @@ function initAuthPage() {
                 if (response.ok) {
                     window.location.href = '/';
                 } else {
-                    errorDiv.textContent = data.message || '登录失败';
+                    errorDiv.textContent = data.message || 'Login failed';
                     errorDiv.classList.add('show');
                 }
             } catch (error) {
-                errorDiv.textContent = '网络错误，请重试';
+                errorDiv.textContent = 'Network error';
                 errorDiv.classList.add('show');
             }
         });
@@ -88,18 +88,18 @@ function initAuthPage() {
                 const data = await response.json();
                 
                 if (response.ok || response.status === 201) {
-                    alert('注册成功！请登录');
+                    alert('Registration successful. Please log in.');
                     if (tabBtns.length > 0) {
                         tabBtns[0].click();
                     } else {
                         window.location.href = '/login';
                     }
                 } else {
-                    errorDiv.textContent = data.message || '注册失败';
+                    errorDiv.textContent = data.message || 'Registration failed';
                     errorDiv.classList.add('show');
                 }
             } catch (error) {
-                errorDiv.textContent = '网络错误，请重试';
+                errorDiv.textContent = 'Network error. Please try again.';
                 errorDiv.classList.add('show');
             }
         });
@@ -155,7 +155,7 @@ function initChatPage() {
     
     // 新建对话
     newChatBtn.addEventListener('click', function() {
-        if (confirm('确定要清除当前对话历史吗？')) {
+        if (confirm('Are you sure you want to clear the current conversation history?')) {
             clearHistory();
         }
     });
@@ -197,10 +197,10 @@ async function sendMessage() {
             // 添加AI回复
             addMessage('assistant', data.answer, data.retrieved_result);
         } else {
-            addMessage('assistant', '抱歉，发生了错误：' + (data.message || '未知错误'));
+            addMessage('assistant', 'An error occurred:' + (data.message || 'Unknown error'));
         }
     } catch (error) {
-        addMessage('assistant', '网络错误，请检查连接后重试');
+        addMessage('assistant', 'Network error. Please check your connection and try again.');
         console.error('Error:', error);
     } finally {
         hideLoading();
@@ -238,7 +238,7 @@ function addMessage(role, content, retrievedDocs = null) {
     if (retrievedDocs && retrievedDocs.length > 0) {
         const docsDiv = document.createElement('div');
         docsDiv.className = 'retrieved-docs';
-        docsDiv.innerHTML = '<div class="retrieved-docs-title">📄 参考文档：</div>';
+        docsDiv.innerHTML = '<div class="retrieved-docs-title">📄 Reference Documentation: </div>';
         
         retrievedDocs.slice(0, 3).forEach((doc, index) => {
             const docItem = document.createElement('div');
@@ -278,13 +278,13 @@ async function handleFileUpload(e) {
             const uploadedFiles = Array.from(files).map(f => f.name);
             currentFiles = currentFiles.concat(uploadedFiles);
             updateFileList();
-            alert('文件上传成功！共上传 ' + uploadedFiles.length + ' 个文件');
+            alert('Files uploaded successfully! Total files uploaded: ' + uploadedFiles.length);
         } else {
-            const data = await response.json().catch(() => ({message: '服务器错误'}));
-            alert('上传失败：' + (data.message || '未知错误 (状态码: ' + response.status + ')'));
+            const data = await response.json().catch(() => ({message: 'Server error'}));
+            alert('Upload failed:' + (data.message || 'Unknown error (status code: ' + response.status + ')'));
         }
     } catch (error) {
-        alert('上传失败：网络错误 - ' + error.message);
+        alert('Upload failed: Network error - ' + error.message);
         console.error('Upload error:', error);
     } finally {
         hideLoading();
@@ -298,7 +298,7 @@ function updateFileList() {
     fileList.innerHTML = '';
     
     if (currentFiles.length === 0) {
-        fileList.innerHTML = '<div class="file-item">暂无文件</div>';
+        fileList.innerHTML = '<div class="file-item">No files available</div>';
         return;
     }
     
@@ -312,7 +312,7 @@ function updateFileList() {
 
 // 清空文件
 async function clearFiles() {
-    if (!confirm('确定要清空所有上传的文档吗？')) return;
+    if (!confirm('Are you sure you want to clear all uploaded documents?')) return;
     
     showLoading();
     
@@ -324,12 +324,12 @@ async function clearFiles() {
         if (response.ok) {
             currentFiles = [];
             updateFileList();
-            alert('文档已清空');
+            alert('All documents have been cleared.');
         } else {
-            alert('清空失败');
+            alert('Failed to clear.');
         }
     } catch (error) {
-        alert('网络错误');
+        alert('Network error');
         console.error('Clear files error:', error);
     } finally {
         hideLoading();
@@ -347,8 +347,8 @@ async function clearHistory() {
             const chatContainer = document.getElementById('chatContainer');
             chatContainer.innerHTML = `
                 <div class="welcome-message">
-                    <h1>欢迎使用 RAG 智能问答系统</h1>
-                    <p>上传文档后，我可以基于文档内容回答您的问题</p>
+                    <h1>Welcome to the RAG Intelligent Q&A System</h1>
+                    <p>After you upload documents, I can answer your questions based on their content.</p>
                 </div>
             `;
         }
@@ -363,7 +363,7 @@ async function loadUserInfo() {
     const usernameEl = document.getElementById('username');
     if (usernameEl) {
         // 可以添加一个API来获取当前用户信息
-        usernameEl.textContent = '用户';
+        usernameEl.textContent = 'User';
     }
 }
 
